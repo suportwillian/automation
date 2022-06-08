@@ -1,23 +1,53 @@
-package practice;
+package components;
+
+import java.time.Duration;
 
 import org.junit.Test;
 import org.openqa.selenium.WebDriver;
-import java.time.Duration;
+import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import utils.Connection;
-import utils.Elements;
-import utils.Variables;
 
-/*
- * Cria uma nova conta no site. 
- */
-public class CreateAccount {
+public class Utils {
+
+        /*
+         * Método que realiza conexão com o GoogleChrome utilizando o driver chromedriver.
+         */
         @Test
-        public void create() {
-                WebDriver driver = new Connection().newConnection();
-
+        public WebDriver newConnection() {
+                System.setProperty("webdriver.chrome.driver", Variables.dirDriver);
+                WebDriver driver = new ChromeDriver();
                 driver.get(Variables.url);
+                driver.manage().window().maximize();
+                driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(15));
+                return (driver);
+        }
+
+        /*
+         * Método para realizar autenticação no site.
+         */
+        @Test
+        public WebDriver authenticate() {
+                WebDriver driver = new Utils().newConnection();
+                new WebDriverWait(driver, Duration.ofSeconds(3))
+                                .until(ExpectedConditions.elementToBeClickable(Elements.buttonSignin));
+
+                driver.findElement(Elements.buttonSignin).click();
+
+                new WebDriverWait(driver, Duration.ofSeconds(3))
+                                .until(ExpectedConditions.elementToBeClickable(Elements.inputEmail2));
+                driver.findElement(Elements.inputEmail2).sendKeys(Variables.email);
+                driver.findElement(Elements.inputPassword).sendKeys(Variables.Password);
+                driver.findElement(Elements.buttonLogin).click();
+                return driver;
+        }
+
+        /*
+         * Método responsável pela criação do usuário.
+         */
+        @Test
+        public WebDriver createAccount() {
+                WebDriver driver = new Utils().newConnection();
 
                 new WebDriverWait(driver, Duration.ofSeconds(3))
                                 .until(ExpectedConditions.elementToBeClickable(Elements.buttonSignin));
@@ -34,7 +64,7 @@ public class CreateAccount {
 
                 new WebDriverWait(driver, Duration.ofSeconds(3))
                                 .until(ExpectedConditions.visibilityOfElementLocated(Elements.checkText));
-                new WebDriverWait(driver, Duration.ofSeconds(3))
+                new WebDriverWait(driver, Duration.ofSeconds(4))
                                 .until(ExpectedConditions.elementToBeClickable(Elements.radioGender));
                 driver.findElement(Elements.radioGender).click();
                 driver.findElement(Elements.inputFirstname).sendKeys(Variables.Firstname);
@@ -53,6 +83,6 @@ public class CreateAccount {
                 new WebDriverWait(driver, Duration.ofSeconds(3))
                                 .until(ExpectedConditions.elementToBeClickable(Elements.buttonRegister));
                 driver.findElement(Elements.buttonRegister).click();
-                driver.quit();
+                return (driver);
         }
 }
