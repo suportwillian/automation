@@ -12,7 +12,7 @@ public class Variables {
     public static String blouse = "Blouse";
     public static String dress = "Printed Dress";
     public static String email = "teste@servidor.com.br";
-    public static String email1 = "newemailtest8@server.com";
+    public static String email1 = "newemailtest9@server.com";
     public static String Firstname = "Nome";
     public static String Lastname = "Teste";
     public static String Password = "12345";
