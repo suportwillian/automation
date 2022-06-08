@@ -1,0 +1,19 @@
+CT01 - Acesso ao fluxo criar conta
+	Dado que eu estou no site 'http://automationpractice.com'
+	E não possuo uma conta criada
+	Quando eu clicar sobre o botão 'Sign in'
+	Então sou direcionado para a área 'AUTHENTICATION' contendo as opções 'CREATE AN ACCOUNT' 'ALREADY REGISTERED'
+	
+CT02 - Valida inicio fluxo criar conta
+	Dado que eu estou na área 'AUTHENTICATION'
+	E insiro um 'Email' válido no campo 'Email address' localizado abaixo do título 'CREATE AN ACCOUNT'
+	Quando eu clicar sobre o botão 'Create an account'
+	Então sou direcionado para a página 'CREATE AN ACCOUNT'
+	
+CT03 - Criar conta
+	Dado que eu estou na página 'CREATE AN ACCOUNT'
+	E faço o preenchimento de todos os campos obrigatórios que contem o carácter '*' seguindo as regras de negócio dos campos
+	Quando eu clicar sobre o botão 'Register'
+	Então a minha conta é criada com sucesso
+	E sou autenticado automaticamente no site
+	E sou direcionado para a página 'MY ACCOUNT' contendo as opções 'Order history and details' 'My wishlists' 'My credit slips' 'My addresses'
