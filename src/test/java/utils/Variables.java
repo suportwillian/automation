@@ -6,7 +6,7 @@ package utils;
  */
 public class Variables {
     public static String url = "http://automationpractice.com/index.php";
-    public static String dirDriver = "C:\\Users\\user\\Documents\\automation\\driver\\chromedriver.exe";
+    public static String dirDriver = "driver\\chromedriver.exe";
     public static String dressPrinted = "Printed Chiffon Dress";
     public static String shirt = "Faded Short Sleeve T-shirts";
     public static String blouse = "Blouse";
